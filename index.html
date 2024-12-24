@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prenda Mistério</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('image.png') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+        }
+        .container {
+            max-width: 90%;
+            margin: 20px auto;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .hidden {
+            display: none;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        h1, h2, p {
+            text-align: center;
+        }
+        .note {
+            font-size: 12px;
+            color: #bbb;
+            text-align: center;
+            margin-top: -10px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="intro" class="container">
+        <h1>Bem-vindo à Prenda Mistério!</h1>
+        <p>"Dom Quixote, vamos ver se acertas estas perguntas para a Prenda Mistério!"</p>
+        <button onclick="startGame()">Começar 🎵</button>
+    </div>
+
+    <div id="game" class="container hidden">
+        <audio id="backgroundMusic" autoplay loop>
+            <source src="background.mp3" type="audio/mpeg">
+            Seu navegador não suporta o elemento de áudio.
+        </audio>
+
+        <!-- Pergunta 1 -->
+        <div id="stage1">
+            <h2>Pergunta 1</h2>
+            <p>Qual o anime preferido do Dom Flamingo?</p>
+            <select id="answer1">
+                <option value="">Selecione uma resposta</option>
+                <option value="evangelion">Evangelion</option>
+                <option value="demon slayer">Demon Slayer</option>
+                <option value="jujutsu kaisen">Jujutsu Kaisen</option>
+                <option value="86">86</option>
+            </select>
+            <button id="button1" onclick="checkAnswer1()">Enviar</button>
+            <p id="feedback1" class="hidden"></p>
+        </div>
+
+        <!-- Pergunta 2 -->
+        <div id="stage2" class="hidden">
+            <h2>Pergunta 2</h2>
+            <p>Qual o hobby preferido dos dois Dons?</p>
+            <select id="answer2">
+                <option value="">Selecione uma resposta</option>
+                <option value="ginásio">Ginásio</option>
+                <option value="surf">Surf</option>
+                <option value="crossfit">Crossfit</option>
+                <option value="jogos">Jogos</option>
+            </select>
+            <button id="button2" onclick="checkAnswer2()">Enviar</button>
+            <p id="feedback2" class="hidden"></p>
+        </div>
+
+        <!-- Pergunta 3 -->
+        <div id="stage3" class="hidden">
+            <h2>Pergunta 3</h2>
+            <p>Quem tem os hobbies mais estranhos?</p>
+            <select id="answer3">
+                <option value="">Selecione uma resposta</option>
+                <option value="miguel">Miguel</option>
+                <option value="mãe">Mãe</option>
+                <option value="pai">Pai</option>
+                <option value="gonçalo">Gonçalo</option>
+            </select>
+            <button id="button3" onclick="checkAnswer3()">Enviar</button>
+            <p id="feedback3" class="hidden"></p>
+        </div>
+
+        <!-- Pergunta 4 -->
+        <div id="stage4" class="hidden">
+            <h2>Pergunta 4</h2>
+            <p>Qual o investimento preferido do Dom Flamingo?</p>
+            <select id="answer4">
+                <option value="">Selecione uma resposta</option>
+                <option value="ethereum">Ethereum</option>
+                <option value="cardano">Cardano</option>
+                <option value="bitcoin">Bitcoin</option>
+                <option value="rune">Rune</option>
+            </select>
+            <button id="button4" onclick="checkAnswer4()">Enviar</button>
+            <p id="feedback4" class="hidden"></p>
+        </div>
+
+        <!-- Pergunta 5 -->
+        <div id="stage5" class="hidden">
+            <h2>Pergunta 5</h2>
+            <p>Que personagem de anime inspirou Dom Flamingo na compra dos óculos?</p>
+            <select id="answer5">
+                <option value="">Selecione uma resposta</option>
+                <option value="tenshiro">Tenshiro</option>
+                <option value="goju">Goju</option>
+                <option value="sukuna">Sukuna</option>
+                <option value="toji">Toji</option>
+            </select>
+            <button id="button5" onclick="checkAnswer5()">Enviar</button>
+            <p id="feedback5" class="hidden"></p>
+        </div>
+
+        <!-- Pergunta 6 -->
+        <div id="stage6" class="hidden">
+            <h2>Pergunta Final</h2>
+            <p>Resolva a conta: (120/4) + (20*2) - (20+10)</p>
+            <input type="text" id="answer6" placeholder="Sua resposta...">
+            <button id="button6" onclick="checkAnswer6()">Enviar</button>
+            <p id="feedback6" class="hidden"></p>
+        </div>
+
+        <!-- Mensagem Final -->
+        <div id="final" class="hidden">
+            <h2>PARABÉNS BRODER!</h2>
+            <p>Amo-te muito!</p>
+            <p>A <strong>Prenda Mistério</strong> é um voucher com plafond de <strong>0,01067 BTC a 93750,00 €</strong> para comprares:</p>
+            <ul>
+                <li>1. Prancha de surf</li>
+                <li>2. Relógio da Garmin</li>
+                <li>3. Ou outra coisa que queiras!</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function startGame() {
+            document.getElementById('intro').classList.add('hidden');
+            document.getElementById('game').classList.remove('hidden');
+            document.getElementById('backgroundMusic').play();
+        }
+
+        function checkAnswer1() {
+            const answer = document.getElementById('answer1').value;
+            const feedback = document.getElementById('feedback1');
+
+            if (answer === 'evangelion') {
+                feedback.textContent = 'Correto! Próxima pergunta...';
+                feedback.classList.remove('hidden');
+                document.getElementById('stage1').classList.add('hidden');
+                document.getElementById('stage2').classList.remove('hidden');
+            } else {
+                feedback.textContent = 'Resposta errada. Dica: Primeiro anime';
+                feedback.classList.remove('hidden');
+            }
+        }
+
+        function checkAnswer2() {
+            const answer = document.getElementById('answer2').value;
+            const feedback = document.getElementById('feedback2');
+
+            if (answer === 'surf') {
+                feedback.textContent = 'Correto! Próxima pergunta...';
+                feedback.classList.remove('hidden');
+                document.getElementById('stage2').classList.add('hidden');
+                document.getElementById('stage3').classList.remove('hidden');
+            } else {
+                feedback.textContent = 'Resposta errada. Dica: Pense no mar';
+                feedback.classList.remove('hidden');
+            }
+        }
+
+        function checkAnswer3() {
+            const answer = document.getElementById('answer3').value;
+            const feedback = document.getElementById('feedback3');
+
+            if (answer === 'gonçalo') {
+                feedback.textContent = 'Correto! Próxima pergunta...';
+                feedback.classList.remove('hidden');
+                document.getElementById('stage3').classList.add('hidden');
+                document.getElementById('stage4').classList.remove('hidden');
+            } else {
+                feedback.textContent = 'Resposta errada. Dica: Ele é único';
+                feedback.classList.remove('hidden');
+            }
+        }
+
+        function checkAnswer4() {
+            const answer = document.getElementById('answer4').value;
+            const feedback = document.getElementById('feedback4');
+
+            if (answer === 'bitcoin') {
+                feedback.textContent = 'Correto! Próxima pergunta...';
+                feedback.classList.remove('hidden');
+                document.getElementById('stage4').classList.add('hidden');
+                document.getElementById('stage5').classList.remove('hidden');
+            } else {
+                feedback.textContent = 'Resposta errada. Dica: Uma criptomoeda famosa';
+                feedback.classList.remove('hidden');
+            }
+        }
+
+        function checkAnswer5() {
+            const answer = document.getElementById('answer5').value;
+            const feedback = document.getElementById('feedback5');
+
+            if (answer === 'goju') {
+                feedback.textContent = 'Correto! Próxima pergunta...';
+                feedback.classList.remove('hidden');
+                document.getElementById('stage5').classList.add('hidden');
+                document.getElementById('stage6').classList.remove('hidden');
+            } else {
+                feedback.textContent = 'Resposta errada. Dica: É de um anime famoso';
+                feedback.classList.remove('hidden');
+            }
+        }
+
+        function checkAnswer6() {
+            const answer = document.getElementById('answer6').value;
+            const feedback = document.getElementById('feedback6');
+
+            if (answer === '40') {
+                feedback.textContent = 'Parabéns! Você acertou todas as perguntas!';
+                feedback.classList.remove('hidden');
+                document.getElementById('stage6').classList.add('hidden');
+                document.getElementById('final').classList.remove('hidden');
+            } else {
+                feedback.textContent = 'Resposta errada. Dica: Faça as contas com calma!';
+                feedback.classList.remove('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
+
